@@ -52,7 +52,7 @@
     <div class="clearfix">
         <footer>
             <div class="container-fluid">
-                <p class="copyright">&copy; 2019. MNAC Copyright.</p>
+                <p class="copyright">&copy; 10120907 - Muhammad Nur Alviansyah</p>
             </div>
         </footer>
     </div>

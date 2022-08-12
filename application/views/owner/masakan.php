@@ -7,7 +7,6 @@
                     <li><a href="<?= base_url('index.php/owner/manage')?>" class=""><i class="lnr lnr-code"></i> <span>Management User</span></a></li>
                     <li><a href="<?= base_url('index.php/owner/masakan')?>" class="active"><i class="lnr lnr-chart-bars"></i> <span>Masakan</span></a></li>
                     <li><a href="<?= base_url('index.php/owner/pesanan')?>" class=""><i class="lnr lnr-cog"></i> <span>Pesanan</span></a></li>
-                    <li><a href="<?= base_url('index.php/owner/laporan')?>" class=""><i class="fas fa-book"></i> <span>Laporan</span></a></li>
                 </ul>
             </nav>
         </div>
@@ -38,7 +37,6 @@
                                 <th>Deskripsi</th>
                                 <th>Harga</th>
                                 <th>Gambar</th>
-                                <th>Kategori</th>
                                 <th>Status Masakan</th>
                                 <th>Action</th>
                             </tr>
@@ -61,7 +59,6 @@
                                     <td ><?php echo $desc;?></td>
                                     <td><?php echo $harga;?></td>
                                     <td><img class="img-circle" src="<?php echo base_url('assets/pelanggan/'.$gambar); ?>" width='100' height='100'/></a></td>
-                                    <td style="text-align: center;"><?php echo $kategori;?></td>
                                     <td><?php echo $smasakan;?></td>
                                     <td>
                                         <button type="button" data-toggle="modal" data-target="#modal_edit<?php echo $id_masakan;?>" class="btn btn-info" style="border-radius: 2px;"><i class="fas fa-pencil-alt ai"></i></button>
@@ -264,7 +261,7 @@
     <div class="clearfix">
         <footer>
             <div class="container-fluid">
-                <p class="copyright">&copy; 2019. MNAC Copyright.</p>
+                <p class="copyright">&copy; 10120907 - Muhammad Nur Alviansyah</p>
             </div>
         </footer>
     </div>

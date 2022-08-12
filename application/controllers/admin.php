@@ -19,7 +19,7 @@ class admin extends CI_Controller {
 		{
 			$data['user']=$this->kasir->user()->num_rows();
 			$data['masakan']=$this->kasir->masakan()->num_rows();
-			$data['transaksi']=$this->kasir->pesanan_admin()->num_rows();
+			$data['transaksi']=$this->kasir->orderan()->num_rows();
 			$this->load->view('heater/header');
 			$this->load->view('admin/dashboard',$data);
 			$this->load->view('heater/footer');
@@ -73,7 +73,7 @@ class admin extends CI_Controller {
 	{
 		if($this->kasir->logged_id())	
 		{
-			$data['pes'] = $this->kasir->pesanan_admin();
+			$data['mas'] = $this->kasir->order();
 			$this->load->view('heater/header');
 			$this->load->view('admin/pesanan',$data);
 			$this->load->view('heater/footer');
@@ -184,6 +184,16 @@ public function hapusmas($id)
 	redirect('admin/masakan');
 }
 
+public function hapus_order($id)
+{
+	$where = array(
+		'id_order' => $id
+	);
+	$this->db->where($where);
+	$this->db->delete('orderan');
+	redirect('admin/pesanan');
+}
+
 function hapuspes($nama_mas,$id_d)
 {
 	$this->db->query("DELETE orderan, detail_order FROM orderan , detail_order WHERE orderan.id_order = detail_order.id_order AND detail_order.nama_masakan = '$nama_mas' AND detail_order.id_detail_order = '$id_d'");
@@ -211,6 +221,30 @@ function editmas(){
 	$status_masakan = $this->input->post('status_masakan');
 	$this->kasir->edit_mas($nama_masakan, $deskripsi, $harga, $gambar, $kategori, $status_masakan);
 	redirect('admin/manage');
+}
+
+public function addPesanan(){
+	$no_meja = $this->input->post('no_meja');
+	$tanggal = $this->input->post('tanggal');
+	$keterangan = $this->input->post('keterangan');
+	$kode = array(
+		'no_meja'  => $no_meja,
+		'tanggal'   =>  $tanggal,
+		'keterangan'      =>  $keterangan,
+		'status_order'   =>  "selesai");
+	$oke = $this->db->insert('orderan',$kode);
+	redirect('admin/pesanan');
+}	
+
+function editPesanan(){
+
+	$id_order = $this->input->post('id_order');
+	$no_meja = $this->input->post('no_meja');
+	$tanggal = $this->input->post('tanggal');
+	$keterangan = $this->input->post('keterangan');
+	
+	$this->kasir->edit_pesanan($id_order, $no_meja, $tanggal, $keterangan);
+	redirect('admin/pesanan');
 }
 
 public function gambar(){

@@ -68,7 +68,12 @@ class kasir extends CI_Model
 
 	public function pesanan_admin()
 	{
-		return $this->db->query("SELECT  o.no_meja ,o.id_order, r.nama_masakan, r.harga, r.qty, (r.harga * r.qty) as total_harga FROM orderan o INNER join detail_order r ON o.id_order = r.id_order where o.status_order = 'belum selesai' group by o.id_order");
+		return $this->db->query("SELECT  o.no_meja ,o.id_order, r.nama_masakan, r.harga, r.qty, (r.harga * r.qty) as total_harga FROM orderan o INNER join detail_order r ON o.id_order = r.id_order  group by o.id_order");
+	}
+
+	public function orderan()
+	{
+		return $this->db->query("SELECT  *  FROM orderan");
 	}
 
 	public function view_data($id)
@@ -127,6 +132,11 @@ class kasir extends CI_Model
 	function edit_user($username, $password, $nama_user, $id_level, $id_user)
 	{
 		return $this->db->query("UPDATE user SET username = '$username', password = '$password', nama_user = '$nama_user', id_level = '$id_level' WHERE id_user = '$id_user' ");
+	}
+
+	function edit_pesanan($id_order, $no_meja, $tanggal, $keterangan)
+	{
+		return $this->db->query("UPDATE orderan SET no_meja = '$no_meja', tanggal = '$tanggal', keterangan = '$keterangan', status_order = 'selesai' WHERE id_order = '$id_order' ");
 	}
 
 	// ---- Nambah Masakan dengan foto ---- 
